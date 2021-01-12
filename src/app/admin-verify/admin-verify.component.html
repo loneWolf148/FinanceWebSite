@@ -1,0 +1,15 @@
+<div class='container'>
+    <form #deptForm='ngForm' (ngSubmit)='saveconsumer()'>
+       
+    <fieldset>
+        <legend>Activate User's Account</legend>
+     <p align="center">
+            <span>ACTIVATE USER:</span> &nbsp;
+            <input type="radio" id="yes" name="yes">YES &nbsp;
+            <input type="radio" id="no" name="yes">NO
+            <br><br>
+            <button type="submit" [disabled]="deptForm.invalid" >Submit </button>
+        </p>
+        </fieldset>
+</form>
+</div>

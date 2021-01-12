@@ -1,0 +1,9 @@
+.emi-card {
+    display: inline-block;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #F2F2F2;
+    margin: 50px auto 0 auto;
+    text-align: left;
+}

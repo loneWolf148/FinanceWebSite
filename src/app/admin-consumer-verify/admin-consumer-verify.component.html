@@ -1,0 +1,21 @@
+<div class='container'>
+    <h4 class='btn-danger'>Un-Verified Customer List</h4>
+<div class='jumbotron'>
+
+<table class="table table-sm table-hover">
+    <tr class='btn-success'>
+        <th>NAME</th>
+        <th>PHONE NUMBER</th>
+        <th>ADDRESS</th>
+        <th>E-MAIL</th>
+    </tr>
+    <tr *ngFor="let x of consumerlist">
+        <td>{{x.Name}}</td>
+        <td>{{x.PhoneNumber}}</td>
+        <td>{{x.Address}}</td>
+        <td>{{x.Email}}</td>
+        <td><a [routerLink]="['/admin-verify/', x.UserName]" class="btn btn-primary btn-sm float-right" >Verify</a></td>
+    </tr>
+</table>
+</div>
+</div>

@@ -1,0 +1,24 @@
+<div class='container'>
+    <h4>ADMIN-PAGE</h4>
+    <div class='jumbotron'>
+        <p style="font-family:Comic Sans MS" ><a href="admin-consumer-verify">Verify Customers</a></p>
+        <table class="table table-sm table-hover">
+            <tr class='btn-success'>
+                <th>USER NAME</th>
+                <th>NAME</th>
+                <th>PHONE NUMBER</th>
+                <th>EMAIL</th>
+                <th>ADDRESS</th>
+            </tr>
+            <tr *ngFor="let x of consumerlist">
+                <td>{{x.UserName}}</td>
+                <td>{{x.Name}}</td>
+                <td>{{x.PhoneNumber}}</td>
+                <td>{{x.Email}}</td>
+                <td>{{x.Address}}</td>
+                <td><a [routerLink]="['/admin-consumer-edit/', x.UserName]" class="btn btn-primary btn-sm float-right" >Edit</a></td> 
+                <td><a [routerLink]="['/admin-consumer-delete/',x.UserName]" class="btn btn-danger btn-sm float-right" >Delete</a></td> 
+            </tr>
+            </table>
+    </div>
+</div>
