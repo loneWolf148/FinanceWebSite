@@ -1,43 +1,48 @@
-<div class="container" style="padding-top:60px;">  
-    <div class="row">  
-      <div class="col-md-6 mx-auto">  
-        <div class="card-group">  
-          <div class="card p-4">  
-            <div class="card-body">  
-              <form name="form" (ngSubmit)="userlogin()" #f="ngForm">   
-                <h1 style="text-align:center">Consumer Sign-In</h1>  
-                 
-                <div class="input-group mb-3">  
-                  <div class="input-group-prepend">  
-                    <span class="input-group-text"><i class="icon-user"></i></span>  
-                  </div>  
-                  <input type="text" name="UserName" [(ngModel)]="model.UserName" class="form-control sty1" placeholder="UserName" required>  
-                </div>  
-                <div class="input-group mb-4">  
-                  <div class="input-group-prepend">  
-                    <span class="input-group-text"><i class="icon-lock"></i></span>  
-                  </div>  
-                  <input  type="Password" name="Password" [(ngModel)]="model.Password" class="form-control"  
-                 placeholder="Password">  
-                </div>    
-                <div class="row">  
-                  <div class="col-6">  
-                    <button type="submit" class="btn btn-primary px-4">Login</button>  
-                  </div>  
-                  <div class="col-6 text-right">
-                    <div class="d-flex justify-content-center links">Don't have an account?<a routerLink="./../register">Sign Up</a>
-                    </div>
-                  </div>  
-                </div> 
-                <div class="col-6 text-right">
-                  <div class="d-flex justify-content-center">
-                    <a routerLink="./../forget-password">Forgot your password?</a>
-                  </div>
-                </div> 
-              </form>  
-            </div>  
-          </div>  
-        </div>  
-      </div>  
-    </div>  
+<div class="container" style="padding-top:60px;">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <div class="card-group">
+        <div class="card p-4">
+          <div class="card-body">
+            <form name="form" (ngSubmit)="userlogin()" #consumerLogin="ngForm">
+              <h1 class="text-center">Consumer Sign-In</h1>
+
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="icon-lock"></i></span>
+                </div>
+                <input type="text" name="UserName" [(ngModel)]="model.UserName" class="form-control"
+                  placeholder="Enter User Name" required>
+              </div>
+              <div class="input-group mb-4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="icon-lock"></i></span>
+                </div>
+                <input type="Password" name="Password" [(ngModel)]="model.Password" class="form-control" required
+                  placeholder="Enter Password" minlength="5">
+              </div>
+              <div>
+                <a routerLink="./../forget-password/"> Forgot your password?</a>
+              </div>
+              <br>
+              <div>
+                <div>
+                  <button type="submit" class="btn btn-primary px-4" [disabled]="consumerLogin.invalid">Login</button>
+                  &nbsp; &nbsp;
+                  <button type="button" routerLink="./../home/" class="btn btn-danger px-4">Cancel</button>
+                </div>
+              </div>
+              <br />
+              <div class="input-group-text">
+                <div class="d-flex justify-content-center links">
+                  Don't have an account? &nbsp;<a routerLink="./../register/">Sign Up</a>
+                </div>
+                <br>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+</div>

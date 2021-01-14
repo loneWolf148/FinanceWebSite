@@ -24,8 +24,11 @@ export class ProductOrderComponent implements OnInit {
     ProductName: null,
     ProductCost: null,
     ProductDetails: null,
-    ProductAvailability: null
+    ProductAvailability: null,
+    ImagePosition: null
   };
+
+  imagePosition : number; 
 
   constructor(
     private productService: ProductService,
@@ -33,6 +36,7 @@ export class ProductOrderComponent implements OnInit {
     private activateRoute: ActivatedRoute,
     private router: Router) {
     this.selectedProductId = + this.activateRoute.snapshot.paramMap.get("id");
+    this.imagePosition = + this.activateRoute.snapshot.paramMap.get("position");
   }
 
   ngOnInit(): void {

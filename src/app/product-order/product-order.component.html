@@ -1,36 +1,38 @@
 <div class="container vertical-spacing">
-    <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-            <img src="assets/product.jpg" alt="Product Image" class="img-thumbnail">
-        </div>
-
-        <div class="container col-lg-8 col-md-8 col-sm-6 col-xs-6">
-            <h3 class="text-primary">{{selectedProduct.ProductName}}</h3>
-            <p class="text-muted">{{selectedProduct.ProductName}}</p>
-            <h4 class="text-danger">Price &#x20b9; {{selectedProduct.ProductCost}}</h4>
-            <br><br>
-
-            <div class="form-group">
-                <label class="lead" for="buy-scheme">EMI Period</label>
-                <select id="buy_scheme" class="form-control" [(ngModel)]="selectedSchemeNo" (change)="getMonthlyEmi()">
-                    <option *ngFor="let scheme of schemes" [value]="scheme.SchemeNo">
-                        {{scheme.Months}} Months
-                    </option>
-                </select>
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                <img src="assets/product_{{imagePosition}}.jpg" alt="Product Image" class="img-thumbnail">
             </div>
 
-            <h3 class="text-danger">EMI Starting &#x20b9; {{schemeEmiCost}} per month</h3>
+            <div class="container col-lg-8 col-md-8 col-sm-6 col-xs-6">
+                <h3 class="text-dark font-weight-bold">{{selectedProduct.ProductName}}</h3>
+                <p class="text-muted lead">{{selectedProduct.ProductName}}</p>
+                <h4 class="text-info">Price &#x20b9; {{selectedProduct.ProductCost}}</h4>
+                <br><br>
 
-            <br><br><br>
-            <button class="btn btn-lg btn-primary align-bottom" (click)="placeOrder()"
-                [disabled]="!selectedProduct.ProductAvailability">
-                Pay Now
-            </button>
+                <div class="form-group">
+                    <label class="lead" for="buy-scheme">EMI Period</label>
+                    <select id="buy_scheme" class="form-control" [(ngModel)]="selectedSchemeNo"
+                        (change)="getMonthlyEmi()">
+                        <option *ngFor="let scheme of schemes" [value]="scheme.SchemeNo">
+                            {{scheme.Months}} Months
+                        </option>
+                    </select>
+                </div>
 
-            &nbsp;
-            <a class="btn btn-lg btn-danger" href="/product-list/">Cancel</a>
-            <p></p>
+                <h3 class="text-danger">EMI Starting &#x20b9; {{schemeEmiCost}} per month</h3>
+
+                <br><br><br>
+                <button class="btn btn-lg btn-primary align-bottom" (click)="placeOrder()"
+                    [disabled]="!selectedProduct.ProductAvailability">
+                    Pay Now
+                </button>
+
+                &nbsp;
+                <a class="btn btn-lg btn-danger" routerLink="/product-list/">Cancel</a>
+                <p></p>
+            </div>
         </div>
     </div>
-    <hr>
 </div>

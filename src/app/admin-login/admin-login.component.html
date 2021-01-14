@@ -2,30 +2,29 @@
     <div class="row">
         <div class="col-md-6 mx-auto">
             <div class="card-group">
-                <div class="card p-4">
+                <div class="card p-2">
                     <div class="card-body">
-                        <form name="form" (ngSubmit)="adminlogin()" #f="ngForm">
+                        <form (ngSubmit)="adminlogin()" #adminLogin="ngForm">
                             <h1 style="text-align:center">Admin Sign-In</h1>
 
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="icon-user"></i></span>
                                 </div>
-                                <input type="text" name="UserName" [(ngModel)]="model.UserName"
-                                    class="form-control sty1" placeholder="UserName" required>
+                                <input type="text" required name="UserName" [(ngModel)]="model.UserName" autofocus
+                                    class="form-control sty1" placeholder="Enter User Name" required>
                             </div>
                             <div class="input-group mb-4">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="icon-lock"></i></span>
                                 </div>
-                                <input type="Password" name="Password" [(ngModel)]="model.Password" class="form-control"
-                                    placeholder="Password">
+                                <input type="Password" name="Password" required minlength="5"
+                                    [(ngModel)]="model.Password" class="form-control" placeholder="Enter Password">
                             </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <button type="submit" class="btn btn-primary px-4">Login</button>
-                                </div>
-                            </div>
+                            <button type="submit" class="btn btn-primary px-4"
+                                [disabled]="adminLogin.invalid">Login</button>
+                            &nbsp; &nbsp;
+                            <button type="button" routerLink="./../home/" class="btn btn-danger px-4">Cancel</button>
                         </form>
                     </div>
                 </div>

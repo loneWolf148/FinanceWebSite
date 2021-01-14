@@ -1,59 +1,72 @@
 <div class="container">
-    <div class="text-center">
-        <div class="emi-card">
-            <h4 class="text-muted">{{getcard?.CardNumber}}</h4>
-            <p class="text-capitalize"><strong>Holder Name - </strong>{{getcard?.Name}}</p>
-            <p class="text-capitalize"><strong>Valid Till - </strong>{{getcard?.Validity | date}}</p>
-            <p class="text-capitalize"><strong>Card Type - </strong>{{getcard?.CardType}}</p>
-            <div *ngIf='getcard?.Activated' class="bg-success text-center font-weight-bold">ACTIVATED</div>
-            <div *ngIf='!getcard?.Activated' class="bg-danger text-center font-weight-bold">NOT ACTIVATED</div>
+    <div class="jumbotron horizonal-center-jumbotron">
+        <div class="card">
+            <img src="/assets/card_thumbnail.jpg" alt="Card Thumbnail" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-text">Wallet Information</h5>
+                <hr>
+                <p>TOTAL CREDITS - &#8377; {{getcredit?.TotalCredit}}</p>
+                <p>CREDITS USED - &#8377; {{getcredit?.CreditUsed}}</p>
+                <p>REMAINING CREDITS - &#8377; {{getcredit?.RemainingCredit}}</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="/assets/card_thumbnail.jpg" alt="Card Thumbnail" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">Card Information</h5>
+                <hr>
+                <h5 class="text-muted">{{getcard?.CardNumber}}</h5>
+                <p class="text-capitalize">Holder Name - {{getcard?.Name}}</p>
+                <p class="text-capitalize">Valid Till - {{getcard?.Validity | date}}</p>
+                <p class="text-capitalize">Card Type - {{getcard?.CardType}}</p>
+                <div *ngIf='getcard?.Activated' class="bg-success text-center font-weight-bold">ACTIVATED</div>
+                <div *ngIf='!getcard?.Activated' class="bg-danger text-center font-weight-bold">NOT ACTIVATED</div>
+            </div>
         </div>
     </div>
-    <br><br>
-    <div class="emi-card">
-        <p><strong>TOTAL CREDITS - </strong> {{getcredit?.TotalCredit}}</p>
-        <p><strong>CREDITS USED - </strong>{{getcredit?.CreditUsed}}</p>
-        <p><strong>REMAINING CREDITS - </strong>{{getcredit?.RemainingCredit}}</p>
+
+    <div class="jumbotron">
+        <h2 class="text-capitalize text-center text-dark font-weight-bold">Products Purchased</h2>
+        <br>
+        <table class="table table-hover table-striped">
+            <thead class="thead-dark">
+                <tr class="text-uppercase">
+                    <th>Product ID</th>
+                    <th>Purchase Date</th>
+                    <th>Product Cost</th>
+                    <th>Amount Paid</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of getpurchasedproducts">
+                    <td>{{product?.ProductName}}</td>
+                    <td>{{product?.PurchaseDate | date }}</td>
+                    <td>{{product?.OrderAmount}}</td>
+                    <td>{{product?.AmountPaid}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-    <br><br>
 
-    <h2 class="text-capitalize text-left text-dark">Products Purchased</h2>
-    <table class="table table-striped table-hover table-bordered">
-        <thead class="thead-dark">
-            <tr class="text-uppercase">
-                <th>Product ID</th>
-                <th>Purchase Date</th>
-                <th>Product Cost</th>
-                <th>Amount Paid</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let product of getpurchasedproducts">
-                <td>{{product?.ProductName}}</td>
-                <td>{{product?.PurchaseDate | date }}</td>
-                <td>{{product?.OrderAmount}}</td>
-                <td>{{product?.AmountPaid}}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <br><br>
-
-    <h2 class="text-capitalize text-left text-dark">Recent Transactions</h2>
-    <table class="table table-striped table-hover table-bordered">
-        <thead class="thead-dark">
-            <tr class="text-uppercase">
-                <th>Product Name</th>
-                <th>Date</th>
-                <th>EMI Amount</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let transaction of getrecenttransactions">
-                <td>{{transaction?.ProductName}}</td>
-                <td>{{transaction?.DeductionDate | date }}</td>
-                <td>{{transaction?.EMIAmount}}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="jumbotron">
+        <h2 class="text-capitalize text-center text-dark font-weight-bold">Recent Transactions</h2>
+        <br>
+        <table class="table table-striped table-hover">
+            <thead class="thead-dark">
+                <tr class="text-uppercase">
+                    <th>Product Name</th>
+                    <th>Date</th>
+                    <th>EMI Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let transaction of getrecenttransactions">
+                    <td>{{transaction?.ProductName}}</td>
+                    <td>{{transaction?.DeductionDate | date }}</td>
+                    <td>{{transaction?.EMIAmount}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

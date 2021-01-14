@@ -22,7 +22,7 @@ export class ConsumerLoginComponent implements OnInit {
 
   userlogin() {
     this.consumerLoginService.Login(this.model).subscribe(user => {
-      window.alert("Loggin in Successfully");
+      this.consumerLoginService.storeAuthCredentials(user);
       this.router.navigate(["/product-list/"]);
     }, error => {
       window.alert(error);

@@ -20,7 +20,9 @@ export class ConsumerDashboardComponent implements OnInit {
   getpurchasedproducts: IPurchasedProducts;
   getrecenttransactions: IRecentTransactions;
 
-  constructor(private consumerservice: ConsumerServiceService, private activatedRoute: ActivatedRoute, private router: Router) {
+  constructor(private consumerservice: ConsumerServiceService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router) {
     const username = this.activatedRoute.snapshot.paramMap.get("id");
     this.username = username;
   }

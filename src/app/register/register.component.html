@@ -1,95 +1,145 @@
 <div class="container">
-    <h3 class="alert-success" style="text-align: center;">Register</h3>
-    <form #registerForm='ngForm' (ngSubmit)='saveConsumer(con)'>
-        <div class="form-group" [class.has-error]="Name.touched && Name.invalid">
-            <label for='Name'>Name : </label><br>
-            <input type='text' required class="form-control" id='Name' name='Name' [(ngModel)]='con.Name' #Name='ngModel'>
-            <span class="help-block alert-danger" *ngIf="Name.touched && Name.invalid">
-                Name cannot be blank
-            </span>
-        </div>
-       <div class="form-group" [class.has.error]="DateofBirth.touched && DateofBirth.invalid">
-           <label for="DateofBirth">Date Of Birth : </label><br>
-           <input type="date" required class="form-control" id='DateofBirth' name="DateofBirth" [(ngModel)]='con.DateofBirth' #DateofBirth='ngModel'>
-           <span class="help-block alert-danger" *ngIf="DateofBirth.touched && DateofBirth.invalid">
-               Date of Birth is Required
-           </span>
-       </div>
-       <div class="form-group" [class.has.error]="Email.touched && Email.invalid">
-           <label for="Email">Email Id : </label>
-           <input type="email" required class="form-control" id="Email" name="Email" [(ngModel)]='con.Email' #Email='ngModel'>
-           <span class="help-block alert-danger" *ngIf="Email.touched && Email.invalid">
-               Email is required
-           </span>
-       </div>
-       <div class="from-group" [class.has.error]="PhoneNumber.touched && PhoneNumber.invalid">
-           <label for="PhoneNumber">Phone No. : </label>
-           <input type="text" required minlength="10" class="form-control" id="PhoneNumber" name="PhoneNumber" [(ngModel)]='con.PhoneNumber' #PhoneNumber='ngModel'>
-           <span class="help-block alert-danger" *ngIf="PhoneNumber.touched && PhoneNumber.invalid">
-               Phone No. is required
-           </span>
-       </div>
-       <div class="form-group" [class.has.error]="Username.touched && Username.invalid">
-           <label for="Username">Username : </label>
-           <input type="text" required class="form-control" id="Username" name="Username" [(ngModel)]="con.UserName" #Username='ngModel'>
-           <span class="help-block alert-danger" *ngIf="Username.touched && Username.invalid">
-               Username is required
-           </span>
-       </div>
-       <div class="form-group" [class.has.error]="Password.touched && Password.invalid">
-           <label for="Password">Password : </label>
-           <input type="password" required minlength="5" class="form-control" id="Password" name="Password" [(ngModel)]="con.Password" #Password="ngModel">
-          <div *ngIf="Password.touched && Password.invalid">
-           <span class="help-block alert-danger" *ngIf="Password.touched && Password.invalid">
-               Password is required
-           </span>
-           <span class="help-block alert-danger" *ngIf="Password.touched && Password.errors.minlength">Password length should be greater than 5</span>
-       </div>
-    </div>
-       <div class="form-group" [class.has.error]="ConfirmPassword.touched && ConfirmPassword.invalid">
-        <label for="Confirm Password"> Confirm Password : </label>
-        <input type="password" required minlength="5" class="form-control" id="ConfirmPassword" name="ConfirmPassword" [(ngModel)]="con.Password" #ConfirmPassword='ngModel'>
-        <span class="help-block alert-danger" *ngIf="ConfirmPassword.touched && ConfirmPassword.touched">
-            
-        </span>
-        </div>
-        <div class="form-group" [class.has.error]="Address.touched && Address.invalid">
-            <label for="Address">Address : </label>
-            <input type="text" class="form-control" id="Address" name="Address" [(ngModel)]="con.Address" #Address='ngModel'>
-            <span class="help-block alert-danger" *ngIf="Address.touched && Address.invalid">Address is Required</span>
-        </div>
-       
-       
-        <div class="form-group" [class.has.error]="AccountNo.touched && AccountNo.invalid">
-            <label for="AccountNo">Savings Account No. : </label>
-            <input type="text" class="form-control" id="AccountNo" name="AccountNo" [(ngModel)]="con.AccountNo" #AccountNo='ngModel'>
-            <span class="help-block alert-danger" *ngIf="AccountNo.touched && AccountNo.invalid">Account No. is Required</span>
-        </div>
-        <div class="form-group" [class.has.error]="IFSC.touched && IFSC.invalid">
-            <label for="IFSC">IFSC : </label>
-            <input type="text" reruired minlength="11" maxlength="11" class="form-control" id="IFSC" name="IFSC" [(ngModel)]="con.IFSC" #IFSC='ngModel'>
-            <div *ngIf="IFSC.touched && IFSC.invalid">
-            <span class="help-block alert-danger" *ngIf="IFSC.touched && IFSC.invalid">Required</span>
-            <span class="help-block alert-danger" *ngIf="IFSC.touched && IFSC.error.minlength">length should be equal to 11</span>
-        </div>
-        <div class="form-group">
-            <label>Card Type : </label>
-            <div class="form-control">
-                <label class="radio-inline">
-            <input type="radio" value="Gold" name="CardType" [(ngModel)]="con.CardType">
-            Gold
-        </label>
-        <label class="radio-inline">
-            <input type="radio" value="Titanium" name="CardType" [(ngModel)]="con.CardType">
-            Titanium
-            </label>
-            </div>
-        </div>
-    </div>
-       <div class="form-group">
-           <button type="submit" [disabled]="registerForm.invalid" class="btn btn-primary">Register</button>
-           <button type="reset" class="btn btn-primary">Reset</button>
-       </div>
+    <div class="jumbotron">
+        <h5 class="display-4 text-uppercase font-weight-bold text-center">Consumer Registration</h5>
 
-    </form>
+        <form #registerForm='ngForm' (ngSubmit)='saveConsumer(con)'>
+            <div class="form-group">
+                <label for='Name' class="font-weight-bolder">Name</label><br>
+                <input type='text' required class="form-control" id='Name' name='Name' [(ngModel)]='con.Name' required
+                    placeholder="Enter Your Name" #Name='ngModel'>
+                <div *ngIf="Name.touched && Name.invalid && Name.errors.required" class="alert alert-danger">
+                    Name is Required and Cannot Be Blank
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="DateofBirth" class="font-weight-bolder">Date Of Birth</label><br>
+                <input type="date" required class="form-control" id='DateofBirth' name="DateofBirth" required
+                    [(ngModel)]='con.DateofBirth' #DateofBirth='ngModel'>
+                <div *ngIf="DateofBirth.touched && DateofBirth.invalid && DateofBirth.errors.required"
+                    class="alert alert-danger">
+                    Date of Birth is Required
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Email" class="font-weight-bolder">Email Id</label>
+                <input type="email" required class="form-control" id="Email" required minlength="11"
+                    placeholder="someone@email.com" name="Email" [(ngModel)]='con.Email' #Email='ngModel'>
+                <div *ngIf="Email.touched && Email.invalid">
+                    <div class="alert alert-danger" *ngIf="Email.errors.required">
+                        Email is Required and Cannot Be Blank
+                    </div>
+                    <div class="alert alert-danger" *ngIf="Email.errors.minlength">
+                        Enter Email in Valid Form
+                    </div>
+                </div>
+            </div>
+
+            <div class="from-group">
+                <label for="PhoneNumber" class="font-weight-bolder">Phone Number</label>
+                <input type="text" pattern="[6789][0-9]{9}" required class="form-control" id="PhoneNumber" required
+                    minlength="10" maxlength="10" placeholder="Supply Phone Number" name="PhoneNumber"
+                    [(ngModel)]='con.PhoneNumber' #PhoneNumber='ngModel'>
+                <div *ngIf="PhoneNumber.touched && PhoneNumber.invalid">
+                    <div class="alert alert-danger" *ngIf="PhoneNumber.errors.required">
+                        Phone Number is Required and Cannot be Blank
+                    </div>
+                    <div class="alert alert-danger"
+                        *ngIf="(PhoneNumber.errors.minlength || PhoneNumber.errors.maxlength); else wrongFormat">
+                        Phone Number Has to be 10 Digits Long
+                    </div>
+                    <ng-template #wrongFormat>
+                        <div class="alert alert-danger">
+                            Enter Phone Number in Correct Form
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+
+            <br>
+            <div class="form-group">
+                <label for="Username" class="font-weight-bolder">Username</label>
+                <input type="text" class="form-control" id="Username" required
+                    placeholder="Your Username must be unique" name="Username" [(ngModel)]="con.UserName"
+                    #Username='ngModel'>
+                <div *ngIf="Username.touched && Username.invalid">
+                    <div class="alert alert-danger" *ngIf="Username.errors.required">
+                        User Name is Required and Cannot be Blank
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Password" class="font-weight-bolder">Password</label>
+                <input type="password" required minlength="5" class="form-control" id="Password" name="Password"
+                    required placeholder="Enter Your Password" [(ngModel)]="con.Password" #Password="ngModel">
+                <div *ngIf="Password.touched && Password.invalid">
+                    <div class="alert alert-danger" *ngIf="Password.errors.required">
+                        Password is Required and Cannot be Blank
+                    </div>
+                    <div class="alert alert-danger" *ngIf="Password.errors.minlength">
+                        Password Length Should be Greater Than 5
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Address" class="font-weight-bolder">Address</label>
+                <input type="text" class="form-control" id="Address" required placeholder="Supply Your Address"
+                    name="Address" [(ngModel)]="con.Address" #Address='ngModel'>
+                <div class="alert alert-danger" *ngIf="Address.touched && Address.invalid && Address.errors.required">
+                    Address is Required
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="AccountNo" class="font-weight-bolder">Savings Account Number</label>
+                <input type="text" class="form-control" id="AccountNo" required minlength="18" maxlength="18"
+                    placeholder="Supply Your Saving Account Number" name="AccountNo" [(ngModel)]="con.AccountNo"
+                    #AccountNo='ngModel'>
+                <div *ngIf="AccountNo.touched && AccountNo.invalid">
+                    <div class="alert alert-danger" *ngIf="AccountNo.errors.required">
+                        Account Number is Required and Cannot be Blank
+                    </div>
+                    <div class="alert alert-danger" *ngIf="AccountNo.errors.minlength || AccountNo.errors.maxlength">
+                        Account Number Must Be 18 Characters Long
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="ifsc" class="font-weight-bolder">IFSC Code</label>
+                <select class="form-control" id="ifsc" [(ngModel)]="con.IFSC" name="ifsc" #ifsc="ngModel" required>
+                    <option *ngFor="let bank of banks" [value]="bank.IFSC">
+                        {{bank.IFSC}} - {{bank.BankName}}
+                    </option>
+                </select>
+                <div class="alert alert-danger" *ngIf="ifsc.touched && ifsc.invalid">
+                    IFSC Code is Required and Must Be Selected
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title font-weight-bold">Choose Card Type</h5>
+                    <div *ngFor="let card of cardTypes">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="CardType" required [id]="card.CardTypeNo"
+                                [value]="card.CardTypeNo" [(ngModel)]="con.CardTypeNo">
+                            <label class="form-check-label" [for]="card.CardTypeNo">{{card.CardType}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="form-group">
+                <input type="submit" [disabled]="registerForm.invalid" class="btn btn-primary" value="Register">
+                &nbsp; &nbsp;
+                <input type="reset" class="btn btn-info" value="Reset">
+                &nbsp; &nbsp;
+                <a [routerLink]="['/home/']" class="btn btn-danger">Cancel</a>
+            </div>
+        </form>
+    </div>
 </div>

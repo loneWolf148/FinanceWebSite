@@ -16,7 +16,6 @@ export class AdminConsumerDeleteComponent implements OnInit {
     if (window.confirm("Are you sure to delete this Customer")) {
       const UserName = this.ActivatedRoute.snapshot.paramMap.get("id");
       this.adminservice.deleteConsumer(UserName).subscribe(data => {
-        console.log(data);
         window.alert(data);
         this.router.navigate(["/admin-dashboard/"]);
       }, (error) => {

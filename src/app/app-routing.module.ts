@@ -16,27 +16,31 @@ import { RegisterComponent } from './register/register.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { ConsumerLoginComponent } from './consumer-login/consumer-login.component';
 
+import { AdminAuthGuard } from './guards/admin-auth.guard';
+import { ConsumerAuthGuard } from './guards/consumer-auth.guard';
+
 const routes: Routes = [
-  { path: "admin-verify/:id", component: AdminVerifyComponent },
-  { path: "admin-consumer-delete/:id", component: AdminConsumerDeleteComponent },
-  { path: "admin-consumer-edit/:id", component: AdminConsumerEditComponent },
-  { path: "admin-consumer-verify", component: AdminConsumerVerifyComponent },
-  { path: "admin-dashboard", component: AdminDashboardComponent },
+  { path: "admin-verify/:id", component: AdminVerifyComponent, canActivate: [AdminAuthGuard] },
+  { path: "admin-consumer-delete/:id", component: AdminConsumerDeleteComponent, canActivate: [AdminAuthGuard] },
+  { path: "admin-consumer-edit/:id", component: AdminConsumerEditComponent, canActivate: [AdminAuthGuard] },
+  { path: "admin-consumer-verify", component: AdminConsumerVerifyComponent, canActivate: [AdminAuthGuard] },
+  { path: "admin-dashboard", component: AdminDashboardComponent, canActivate: [AdminAuthGuard] },
 
   { path: "admin-login", component: AdminLoginComponent },
   { path: "consumer-login", component: ConsumerLoginComponent },
 
   { path: "home", component: HomeComponent },
-  { path: "change-password", component: ChangePasswordComponent },
+
+  { path: "change-password/:id", component: ChangePasswordComponent, canActivate: [ConsumerAuthGuard] },
   { path: "forget-password", component: ForgetPasswordComponent },
 
-  { path: "consumer-dashboard/:id", component: ConsumerDashboardComponent },
+  { path: "consumer-dashboard/:id", component: ConsumerDashboardComponent, canActivate: [ConsumerAuthGuard] },
 
-  { path: "product-order/:id", component: ProductOrderComponent },
-  { path: "product-list", component: ProductListComponent },
+  { path: "product-order/:id/:position", component: ProductOrderComponent, canActivate: [ConsumerAuthGuard] },
+  { path: "product-list", component: ProductListComponent, canActivate: [ConsumerAuthGuard] },
 
   { path: "register", component: RegisterComponent },
-  
+
   { path: "", redirectTo: "home", pathMatch: "full" }
 ];
 

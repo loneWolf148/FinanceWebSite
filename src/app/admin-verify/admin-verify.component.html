@@ -1,15 +1,21 @@
 <div class='container'>
     <form #deptForm='ngForm' (ngSubmit)='saveconsumer()'>
-       
-    <fieldset>
-        <legend>Activate User's Account</legend>
-     <p align="center">
-            <span>ACTIVATE USER:</span> &nbsp;
-            <input type="radio" id="yes" name="yes">YES &nbsp;
-            <input type="radio" id="no" name="yes">NO
-            <br><br>
-            <button type="submit" [disabled]="deptForm.invalid" >Submit </button>
-        </p>
-        </fieldset>
-</form>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title display-4 lead text-center">Activate User</h5>
+                <hr>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="dec" id="dec1" value="yes" [(ngModel)]="verified"
+                        required checked>
+                    <label class="form-check-label h3" for="dec1">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="dec" id="dec2" value="no" [(ngModel)]="verified">
+                    <label class="form-check-label h3" for="exampleRadios2">No</label>
+                </div>
+                <hr>
+                <input type="submit" value="Submit" class="btn btn-primary">
+            </div>
+        </div>
+    </form>
 </div>

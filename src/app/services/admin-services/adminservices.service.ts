@@ -38,6 +38,11 @@ export class AdminservicesService {
     return this.http.get<IConsumer[]>(this.url + "/getUnverifiedConsumers/").pipe(catchError(this.handleError));
   }
 
+  deductEmi(): Observable<string> {
+    const requestUrl = `${this.url}/DeductEmi/`;
+    return this.http.put<string>(requestUrl, {}, this.httpOptions).pipe(catchError(this.handleError));
+  }
+
   verifyConsumer(consumer: IConsumer): Observable<string> {
     const requestUrl = `${this.url}/VerifyConsumer/${consumer.UserName}/`;
     return this.http.put<string>(requestUrl, consumer, this.httpOptions).pipe(catchError(this.handleError));

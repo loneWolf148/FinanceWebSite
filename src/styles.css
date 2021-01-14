@@ -1,1 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("/assets/background.jpg");
+    background-size: cover;
+}
+
+.form-control.ng-touched.ng-invalid {
+    border: 2px solid red;
+}

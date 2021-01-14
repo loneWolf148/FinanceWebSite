@@ -1,18 +1,21 @@
 <div class="container">
-    <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-            <img src="assets/product_small.png" alt="Product Image" class="img-thumbnail" width="200px" height="200px">
-        </div>
-        <div class="verticalLine container col-lg-8 col-md-8 col-sm-6 col-xs-6">
-            <h3 class="text-primary">{{product.ProductName}}</h3>
-            <p class="text-muted">{{product.ProductName}}</p>
-            <h4 class="text-danger">Cost : &#x20b9; {{product.ProductCost}}</h4>
-            <button class="btn btn-lg btn-primary align-bottom" (click)="buyProduct()"
-                [disabled]="!product.ProductAvailability">
-                Buy Now
-            </button>
-            <p></p>
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 text-center">
+                <img src="/assets/product_{{product.ImagePosition}}.jpg" alt="Product Image"
+                    class="img-thumbnail rounded" width="200px" height="200px">
+            </div>
+            <div class="container col-lg-8 col-md-6 text-left vertical-center">
+                <h3 class="text-dark font-weight-bold">{{product.ProductName}}</h3>
+                <p class="text-muted lead">{{product.ProductName}}</p>
+                <h4 class="text-danger">Cost : &#x20b9; {{product.ProductCost}}</h4>
+                <br>
+                <button class="btn btn-lg btn-primary align-bottom" (click)="buyProduct()"
+                    [disabled]="!product.ProductAvailability">
+                    Buy Now
+                </button>
+                <p></p>
+            </div>
         </div>
     </div>
-    <hr>
 </div>

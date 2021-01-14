@@ -1,8 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router} from '@angular/router';
 
-import { ProductService } from '../services/product-serives/product.service';
-
 import { IProduct } from '../models/product-models/IProduct';
 
 @Component({
@@ -13,11 +11,11 @@ import { IProduct } from '../models/product-models/IProduct';
 export class ProductComponent implements OnInit {
   @Input() product: IProduct;
 
-  constructor(private productService: ProductService, private router: Router) { }
+  constructor(private router: Router) {}
 
   ngOnInit(): void { }
 
   buyProduct(): void {
-    this.router.navigate([`/product-order/${this.product.ProductID}/`]);
+    this.router.navigate([`/product-order/${this.product.ProductID}/${this.product.ImagePosition}`]);
   }
 }

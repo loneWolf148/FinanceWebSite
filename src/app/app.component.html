@@ -1,1 +1,75 @@
-<router-outlet></router-outlet>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <a class="navbar-brand" data-toggle="collapse" data-target=".navbar-collapse.show" routerLink="./home/">
+        <span class="text-upperase text-success font-weight-bold">LT FinCorp.</span>
+        <img src="assets/logo.png" alt="Company Logo" width="40px" height="40px">
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav ml-auto">
+            <!-- Not Authenticated -->
+            <a *ngIf="isNoAuthenticated()" class="nav-item nav-link active text-success"
+                data-toggle="collapse" data-target=".navbar-collapse.show" routerLink="./register/">
+                REGISTER
+            </a>
+
+            <a *ngIf="isNoAuthenticated()" class="nav-item nav-link active text-success"
+                data-toggle="collapse" data-target=".navbar-collapse.show" routerLink="./consumer-login/">
+                LOGIN AS CONSUMER
+            </a>
+
+            <a *ngIf="isNoAuthenticated()" class="nav-item nav-link active text-success"
+                data-toggle="collapse" data-target=".navbar-collapse.show" routerLink="./admin-login/">
+                LOGIN AS ADMIN
+            </a>
+
+            <!-- Authenticated as Admin -->
+            <a *ngIf="isAdminAuthenticated()" class="nav-item nav-link active text-success"
+                data-toggle="collapse" data-target=".navbar-collapse.show" routerLink="./admin-dashboard/">
+                DASHBOARD
+            </a>
+
+            <a *ngIf="isAdminAuthenticated()" class="nav-item nav-link active text-success"
+                data-toggle="collapse" data-target=".navbar-collapse.show" routerLink="./admin-consumer-verify/">
+                UNVERIFIED CONSUMERS
+            </a>
+
+            <a *ngIf="isAdminAuthenticated()"
+                class="nav-item nav-link sign-out text-uppercase active text-success"
+                data-toggle="collapse" data-target=".navbar-collapse.show" (click)="adminSignOut()">
+                Hi {{getAdminName()}}, SIGN OUT
+            </a>
+
+            <!-- Authenticated as Consumer -->
+            <a *ngIf="isConsumerAuthenticated()" class="nav-item nav-link active text-success"
+                data-toggle="collapse" data-target=".navbar-collapse.show"
+                routerLink="./change-password/{{getConsumerIdentity()}}">
+                CHANGE PASSWORD
+            </a>
+
+            <a *ngIf="isConsumerAuthenticated()" class="nav-item nav-link active text-success"
+                data-toggle="collapse" data-target=".navbar-collapse.show"
+                routerLink="./consumer-dashboard/{{getConsumerIdentity()}}">
+                DASHBOARD
+            </a>
+
+            <a *ngIf="isConsumerAuthenticated()" class="nav-item nav-link active text-success"
+                data-toggle="collapse" data-target=".navbar-collapse.show" routerLink="./product-list/">
+                MARKETPLACE
+            </a>
+
+            <a *ngIf="isConsumerAuthenticated()"
+                class="nav-item nav-link active text-success text-uppercase sign-out"
+                data-toggle="collapse" data-target=".navbar-collapse.show" (click)="consumerSignOut()">
+                Hi {{getConsumerName()}}, Sign Out
+            </a>
+        </div>
+    </div>
+</nav>
+<div style="padding-top: 80px;">
+    <router-outlet></router-outlet>
+</div>

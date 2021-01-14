@@ -10,24 +10,28 @@ import { AdminservicesService } from './../services/admin-services/adminservices
 })
 export class AdminVerifyComponent implements OnInit {
   userName: string;
+  verified: "yes" | "no" = "yes";
 
   constructor(private adminservices: AdminservicesService, private router: Router, private activatedRoute: ActivatedRoute) {
     this.userName = this.activatedRoute.snapshot.paramMap.get("id");
   }
 
   saveconsumer(): void {
-    this.adminservices.getConsumer(this.userName).subscribe(consumer => {
-      this.adminservices.verifyConsumer(consumer).subscribe(result => {
-        window.alert(result);
-        this.router.navigate(["/admin-dashboard/"]);
+    if(this.verified === "yes") {
+      this.adminservices.getConsumer(this.userName).subscribe(consumer => {
+        this.adminservices.verifyConsumer(consumer).subscribe(result => {
+          this.router.navigate(["/admin-dashboard/"]);
+        }, error => {
+          window.alert(error);
+          this.router.navigate(["/admin-dashboard/"]);
+        })
       }, error => {
         window.alert(error);
         this.router.navigate(["/admin-dashboard/"]);
       })
-    }, error => {
-      window.alert(error);
-      this.router.navigate(["/admin-dashboard/"]);
-    })
+    } else if(this.verified === "no") {
+      this.router.navigate(["/admin-dashboard"]);
+    }
   }
 
   ngOnInit(): void { }

@@ -22,12 +22,10 @@ export class AdminLoginComponent implements OnInit {
 
   adminlogin() {
     this.adminLoginService.Login(this.model).subscribe(admin => {
-      console.log(admin);
-      window.alert("Logged in Successfully");
-      this.router.navigate(["/admin-dashboard"]);
+      this.adminLoginService.StoreAuthCredentials(admin);
+      this.router.navigate(["/admin-dashboard/"]);
     }, error => {
       window.alert(error);
     });
   }
-
 }

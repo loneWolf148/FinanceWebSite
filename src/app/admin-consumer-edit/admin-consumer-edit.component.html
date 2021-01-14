@@ -1,73 +1,74 @@
-<form #consumerForm='ngForm' (ngSubmit)='saveConsumer(consumer)'>
-  <table>
-    <tr>
-      <div class="form-group" [class.has-error]="idcontrol.touched && idcontrol.invalid">
-        <td> <label for="username">USER NAME:</label></td>
-        <td> <input type="text" id="username" name="username" readonly [(ngModel)]="consumer.UserName" #idcontrol="ngModel"></td>
-        <span class="help-block alert-danger" *ngIf="idcontrol.touched && idcontrol.invalid"> USER NAME cannot be
-          blank</span>
-      </div>
-    </tr>
-    <br>
-    <div class="form-group" [class.has-error]="namecontrol.touched && namecontrol.invalid">
-      <label for="name">NAME</label>
-      <input type="text" id="name" name="name" required minlength="3" [(ngModel)]="consumer.Name"
-        #namecontrol="ngModel" />
-      <div *ngIf="namecontrol.touched && namecontrol.invalid">
-        <span class="help-block alert-danger" *ngIf="namecontrol.touched && namecontrol.invalid">
-          Name is required
-        </span>
-        <span class="help-block alert-danger" *ngIf="namecontrol.errors.minlength">
-          Name should be minlength 3 character
-        </span>
-      </div>
-    </div>
-    <br>
-    <div class="form-group" [class.has-error]="namecontrol.touched && namecontrol.invalid">
-      <label for="email">E-MAIL</label>
-      <input type="email" id="email" name="email" minlength="11" [(ngModel)]="consumer.Email" #namecontrol="ngModel">
-      <div *ngIf="namecontrol.touched && namecontrol.invalid">
-        <span class="help-block alert-danger" *ngIf="namecontrol.touched && namecontrol.invalid">
-          Email is required
-        </span>
-        <span class="help-block alert-danger" *ngIf="namecontrol.errors.minlength">
-          Email should be minlength 11 character
-        </span>
-      </div>
-    </div>
-    <br>
-    <div class="form-group" [class.has-error]="namecontrol.touched && namecontrol.invalid">
-      <label for="phone">PHONE NUMBER</label>
-      <input type="number" id="phone" name="phone number" minlength="10" [(ngModel)]="consumer.PhoneNumber"
-        #namecontrol="ngModel" />
-      <div *ngIf="namecontrol.touched && namecontrol.invalid">
-        <span class="help-block alert-danger" *ngIf="namecontrol.touched && namecontrol.invalid">
-          Phone number is required
-        </span>
-        <span class="help-block alert-danger" *ngIf="namecontrol.errors.minlength">
-          Phone should be minlength 10 numbers
-        </span>
-      </div>
-    </div>
-    <br>
+<div class="container">
+  <div class="jumbotron">
+    <form #consumerForm='ngForm' (ngSubmit)='saveConsumer()'>
 
-    <br>
-    <div class="form-group" [class.has.error]="namecontrol.touched && namecontrol.invalid">
-      <label for="address">ADDRESS</label>
-      <input type="text" id="address" name="address" minlength="1" [(ngModel)]="consumer.Address"
-        #namecontrol="ngModel">
-      <div *ngIf="namecontrol.touched && namecontrol.invalid">
-        <span class="help-block alert-danger" *ngIf="namecontrol.touched && namecontrol.invalid">
-          Address is required
-        </span>
-        <span class="help-block alert-danger" *ngIf="namecontrol.errors.minlength">
-          Address should be minlength 15 characters
-        </span>
+      <div class="form-group">
+        <label for="username" class="font-weight-bolder">USER NAME</label>
+        <input class="form-control" type="text" id="username" name="username" readonly [(ngModel)]="consumer.UserName">
       </div>
-    </div>
-    <br>
-    <div>
-      <button type="submit" [disabled]="consumerForm.invalid"> Save </button>
-    </div>
-  </table>
-</form>
+
+      <div class="form-group">
+        <label for="name" class="font-weight-bolder">NAME</label>
+        <input class="form-control" type="text" id="name" required minlength="3" placeholder="Enter New Name"
+          name="namecontrol" [(ngModel)]="consumer.Name" #namecontrol="ngModel" />
+        <div *ngIf="namecontrol.touched && namecontrol.invalid">
+          <div class="alert alert-danger" *ngIf="namecontrol.errors.required">
+            Name is required
+          </div>
+          <div class="alert alert-danger" *ngIf="namecontrol.errors.minlength">
+            Name Should be Minimum 3 Characters Long
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email" class="font-weight-bolder">E-MAIL</label>
+        <input class="form-control" type="email" id="email" required minlength="11" placeholder="Enter New Email"
+          name="emailcontrol" [(ngModel)]="consumer.Email" #emailcontrol="ngModel">
+        <div *ngIf="emailcontrol.touched && emailcontrol.invalid">
+          <div class="alert alert-danger" *ngIf="emailcontrol.errors.required">
+            Email is required and Cannot be Empty
+          </div>
+          <div class="alert alert-danger" *ngIf="emailcontrol.errors.minlength">
+            Email should be Minimum 11 Characters Long
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="phone" class="font-weight-bolder">PHONE NUMBER</label>
+        <input class="form-control" type="text" required minlength="10" maxlength="10" id="phone"
+          placeholder="Enter New Phone Number" pattern="[789][0-9]{9}" name="numbercontrol"
+          [(ngModel)]="consumer.PhoneNumber" #numbercontrol="ngModel" />
+        <div *ngIf="numbercontrol.touched && numbercontrol.invalid">
+          <div class="alert alert-danger" *ngIf="numbercontrol.errors.required">
+            Phone number is Required and Cannot Be Empty
+          </div>
+          <div class="alert alert-danger" *ngIf="numbercontrol.minlength || numbercontrol.maxlength; else wrongFormat">
+            Phone Number Must Be 10 Digits Long
+          </div>
+          <ng-template #wrongFormat>
+            <div class="alert alert-danger">
+              Enter Phone Number in Correct Form
+            </div>
+          </ng-template>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="address" class="font-weight-bolder">ADDRESS</label>
+        <input class="form-control" type="text" id="address" required placeholder="Enter New Address"
+          name="addresscontrol" [(ngModel)]="consumer.Address" #addresscontrol="ngModel">
+        <div *ngIf="addresscontrol.touched && addresscontrol.invalid">
+          <div class="alert alert-danger" *ngIf="addresscontrol.errors.required">
+            Address is required and Cannot be Empty
+          </div>
+        </div>
+      </div>
+
+      <input type="submit" class="btn btn-primary" [disabled]="consumerForm.invalid" value="Save">
+      &nbsp; &nbsp;
+      <a class="btn btn-danger" routerLink="./../../admin-dashboard">Cancel</a>
+    </form>
+  </div>
+</div>

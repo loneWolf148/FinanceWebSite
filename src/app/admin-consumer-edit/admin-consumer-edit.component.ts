@@ -27,20 +27,15 @@ export class AdminConsumerEditComponent implements OnInit {
     })
   }
 
-  editConsumer() {
-    this.adminservices.editConsumer(this.consumer).subscribe((error) => {
-      window.alert(error);
+  saveConsumer(): void {
+    console.log(this.consumer);
+    this.adminservices.editConsumer(this.consumer).subscribe((_) => {
       this.router.navigate(['/admin-dashboard']);
     }, error => {
       window.alert(error);
       this.router.navigate(["/admin-dashboard/"]);
     }
     );
-  }
-
-  saveConsumer(consumer: IConsumer): void {
-    this.consumer = consumer;
-    this.editConsumer();
   }
 
   ngOnInit(): void {

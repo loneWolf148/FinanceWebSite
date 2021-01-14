@@ -29,6 +29,9 @@ import { ProductService } from './services/product-serives/product.service';
 import { ConsumerServiceService } from './services/consumer-services/consumer-service.service';
 import { RegisterservicesService } from './services/register-serivces/registerservices.service';
 
+import { AdminAuthGuard } from './guards/admin-auth.guard';
+import { ConsumerAuthGuard } from './guards/consumer-auth.guard';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +49,7 @@ import { RegisterservicesService } from './services/register-serivces/registerse
     AdminConsumerDeleteComponent,
     AdminVerifyComponent,
     ConsumerLoginComponent,
-    AdminLoginComponent
+    AdminLoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,7 +65,9 @@ import { RegisterservicesService } from './services/register-serivces/registerse
     ProductService,
     OrderService,
     ConsumerServiceService,
-    RegisterservicesService
+    RegisterservicesService,
+    AdminAuthGuard,
+    ConsumerAuthGuard
   ],
   bootstrap: [AppComponent]
 })

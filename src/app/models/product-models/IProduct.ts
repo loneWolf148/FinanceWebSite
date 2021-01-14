@@ -4,4 +4,5 @@ export interface IProduct {
     ProductDetails : string;
     ProductCost : number;
     ProductAvailability : boolean;
+    ImagePosition: number;
 }
