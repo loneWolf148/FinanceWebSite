@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { ProductService } from '../services/product-serives/product.service';
 import { OrderService } from '../services/product-serives/order.service';
+import { ConsumerLoginService } from '../services/login-services/consumer-login-services/consumer-login.service';
 
 import { IProduct } from '../models/product-models/IProduct';
 import { IScheme } from '../models/product-models/IScheme';
@@ -28,15 +29,19 @@ export class ProductOrderComponent implements OnInit {
     ImagePosition: null
   };
 
-  imagePosition : number; 
+  imagePosition: number;
+  userName: string;
 
   constructor(
     private productService: ProductService,
     private orderService: OrderService,
+    private consumerLoginService: ConsumerLoginService,
     private activateRoute: ActivatedRoute,
     private router: Router) {
     this.selectedProductId = + this.activateRoute.snapshot.paramMap.get("id");
     this.imagePosition = + this.activateRoute.snapshot.paramMap.get("position");
+
+    this.userName = this.consumerLoginService.authenticatedConsumerIdentity;
   }
 
   ngOnInit(): void {
@@ -73,7 +78,7 @@ export class ProductOrderComponent implements OnInit {
   placeOrder() {
     const newOrder: IOrder = {
       ProductID: this.selectedProductId,
-      UserName: "user1",
+      UserName: this.userName,
       SchemeNo: this.selectedSchemeNo
     };
 
