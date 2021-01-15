@@ -1,5 +1,5 @@
 export class AdminStorageModel {
-    static readonly AuthIdentity: string = "AdminUserName";
+    static readonly AuthIdentity: string = "AdminIdentity";
     static readonly AuthName: string = "AdminName";
     static readonly AuthPassword: string = "AdminPassword";
 }
